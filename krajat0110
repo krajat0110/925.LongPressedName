@@ -1,0 +1,20 @@
+class Solution:
+    def isLongPressedName(self, name: str, typed: str) -> bool:
+        # Base cases
+        if len(name) > len(typed):
+            return False
+        if len(typed) == len(name):
+            return True
+        
+		#Initialize pointers for name and typed
+        i , j = 0 , 0
+        
+        while j < len(typed): #loop through typed (since its the bigger string)
+            if i < len(name) and name[i] == typed[j]: 
+                i += 1 #increment name pointer only if i is within bounds and the string match
+            elif j == 0 or typed[j] != typed[j - 1]:
+                return False #if chars doesnt match then check if previous typed char is same or if its the first typed char (edge case)
+            j += 1 #increment the typed pointer always
+        
+        
+        return i==len(name) #return true if only  the name pointer has traversed through the name string
